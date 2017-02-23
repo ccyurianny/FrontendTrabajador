@@ -1,0 +1,57 @@
+<div class="card-panel"  ui-view>
+    <div class="row">
+            <div class="input-field indigo-text .text-darken-4">
+                <i class="material-icons prefix pink-text .text-darken-3">search</i>
+                <input class="indigo-text .text-darken-4" placeholder="Buscar" type="text" ng-model="search">
+                <a class="pink darken-3 btn" ui-sref="trabajador"><i class="material-icons left">add</i>Agregar Trabajador</a>
+
+            </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12">
+            <h5 class="indigo-text .text-darken-4">Listado de Trabajadores</h5>
+            <table class="striped">
+                <thead>
+                <tr class="indigo-text .text-darken-4">
+                    <th data-field="id">Cédula</th>
+                    <th data-field="id">Trabajador</th>
+                    <th data-field="id">Correo</th>
+                    <th data-field="id">Cargo</th>
+                    <th data-field="id">Estatus</th>
+                    <th class="right-align" data-field="price">Acción</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="indigo-text .text-darken-4" ng-repeat="Trabajador in Trabajadores | filter:search">
+                    <td>{{Trabajador.cedula}}</td>
+                    <td>{{Trabajador.nombre}} {{Trabajador.apellido}} </td>
+                    <td>{{Trabajador.correo}}</td>
+                    <td>Eclair</td>
+                    <td>{{Trabajador.correo}}</td>
+                    <td class="right-align">
+                        <a ng-click="eliminarTrabajador(Trabajador.id)" class="secondary-content"><i class="material-icons pink-text .text-darken-3" >delete</i></a>
+                        <a ui-sref="editar({id:{{Trabajador.id}}})" class="secondary-content"><i class="material-icons pink-text .text-darken-3" >edit</i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <a class="pink darken-3 btn" ui-sref="categorias"><i class="left"></i>Ver Categorias</a>
+
+
+    <!-- Modal Structure -->
+    <div id="modalConfirm" class="modal">
+        <div class="modal-content">
+            <h5 class="indigo-text .text-darken-4">¿Esta seguro de querer Elimiar el Trabajador?</h5>
+        </div>
+        <div class="modal-footer input-field indigo-text .text-darken-4">
+            <a class=" modal-action modal-close pink darken-3 btn" id="siEliminar"><i class="material-icons left">done</i>Si</a>
+            <a class=" modal-action modal-close pink darken-3 btn" ui-sref="inicio.catalogo"><i class="material-icons left">cancel</i>No</a>
+        </div>
+    </div>
+</div>
+

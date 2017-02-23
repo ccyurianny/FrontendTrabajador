@@ -1,0 +1,63 @@
+<div class="card-panel">
+    <div class="row">
+        <div class="col s12 m12">
+            <h5 class="indigo-text .text-darken-4">Categorias</h5>
+            <!--<table class="striped">
+                <thead>
+                <tr class="indigo-text .text-darken-4">
+                    <th data-field="id">id</th>
+                    <th data-field="id">Nombre</th>
+                    <th data-field="id">padre</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="indigo-text .text-darken-4" ng-repeat="item in Categorias">
+                    <td>{{item.id}}</td>
+                    <td>{{item.nombre}}</td>
+                    <td>{{item.idpadre}}</td>
+
+                </tr>
+                </tbody>
+            </table>
+            -->
+
+            <div>
+                <ul class="collection">
+                    <li class="collection-item indigo-text .text-darken-4"  ng-repeat="item in Categorias | filter:{ idpadre:''}">{{item.nombre}}
+                        <ol type="1">
+                            <li ng-if="$index=item.idpadre" class="collection-item indigo-text .text-darken-4">{{item[0].nombre}}
+                        </ol>
+
+                    </li>
+                </ul>
+
+               <!-- <ol type="I">
+                    <li ng-repeat="item2 in ordenados"> {{item2.padre}}
+                        <ol type="1">
+                            <li ng-repeat="hijos in item2.hijos">{{hijos}}</li>
+                        </ol>
+                    </li>
+                    <li> Seguimos con el segundo romano
+                        <ol type="a">
+                            <li> Empezamos lista con letra para terminar</li>
+                        </ol>
+                    </li>
+                </ol>
+-->
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col s12 m12">
+            <div class="card-content">
+
+                <button ui-sref="catalogo" class="btn pink darken-3" type="submit">
+                    Regresar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
