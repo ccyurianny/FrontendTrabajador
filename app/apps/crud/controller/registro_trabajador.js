@@ -22,9 +22,9 @@ angular.module('Trabajador')
         }
     })
     .controller('NuevoTrabajadorCtrl', function($scope, TrabajadorResource, $location, $timeout){
-        $(document).ready(function() {
+       /* $(document).ready(function() {
             $('select').material_select();
-        });
+        });*/
         $scope.titulo="Datos del Nuevo Trabajador";
         $scope.boton="Guardar";
         $scope.botonEdit="Editar";

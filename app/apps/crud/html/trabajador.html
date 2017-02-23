@@ -4,7 +4,7 @@
             <h6 class="indigo-text .text-darken-4">{{titulo}}</h6>
             <form name="trabajdorForm" ng-submit="guardarTrabajador()">
                 <div class="input-field col s6 m6">
-                    <input class="indigo-text .text-darken-4" name="cedula" placeholder="Cédula" type="number" ng-model="Trabajador.cedula" required>
+                    <input class="indigo-text .text-darken-4" name="cedula" placeholder="Cédula" type="text" ng-model="Trabajador.cedula" required>
                 </div>
                 <div class="input-field col s6 m6">
                     <input class="indigo-text .text-darken-4" name="nombre" placeholder="Nombre" type="text" ng-model="Trabajador.nombre" required>
@@ -19,7 +19,7 @@
                     <input class="indigo-text .text-darken-4" name="estatus" placeholder="estatus" type="text" ng-model="Trabajador.estatus" required>
                 </div>
                 <div class="input-field col s6 m6">
-                    <input class="indigo-text .text-darken-4" name="cargo" placeholder="cargo" type="email" ng-model="Trabajador.cargo" required>
+                    <input class="indigo-text .text-darken-4" name="cargo" placeholder="cargo" type="text" ng-model="Trabajador.cargo" required>
                 </div>
                <!-- <div class="input-field col s6">
                     <select class="indigo-text .text-darken-4" name="estatus" ng-options="estatus for estatus in Estatuss" ng-model="Trabajador.estatus">
