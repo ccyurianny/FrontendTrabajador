@@ -95,8 +95,8 @@ angular.module('Trabajador')
         $scope.Trabajador=TrabajadorResource.get({
             id:$stateParams.id
         });
-       /* $scope.Trabajador.Cargos=[{id:1, nombre:"admin"}, {id:2, nombre:"analista"}];
-        $scope.Estatus=[{id:1, nombre:"Activo"}, {id:2, nombre:"Inactivo"}];*/
+        $scope.Trabajador.Cargos=[{id:1, nombre:"admin"}, {id:2, nombre:"analista"}];
+        $scope.Estatus=[{id:1, nombre:"Activo"}, {id:2, nombre:"Inactivo"}];
         $scope.guardarTrabajador = function(){
             TrabajadorResource.update($scope.Trabajador);
             Materialize.toast('Trabajador Actualizado.',5000,'pink');
