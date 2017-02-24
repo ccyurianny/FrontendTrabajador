@@ -4,6 +4,7 @@ angular.module('Trabajador')
     .controller('IndexTrabajadorCtrl', function ($scope, TrabajadorResource,  $location, $timeout) {
 
         $scope.Trabajadores= TrabajadorResource.query();
+        var Cargos=[{id:1, nombre:"admin"}, {id:2, nombre:"analista"}];
         $scope.eliminarTrabajador = function (id) {
             $(document).ready(function(){
                $('#modalConfirm').openModal();
@@ -21,44 +22,63 @@ angular.module('Trabajador')
 
         }
     })
-    .controller('NuevoTrabajadorCtrl', function($scope, TrabajadorResource, $location, $timeout){
-       /* $(document).ready(function() {
+    .controller('NuevoTrabajadorCtrl', function($scope, TrabajadorResource, CargosResource, $location, $timeout){
+        $(document).ready(function() {
             $('select').material_select();
-        });*/
+        });
         $scope.titulo="Datos del Nuevo Trabajador";
         $scope.boton="Guardar";
         $scope.botonEdit="Editar";
         $scope.botonRegresar="Regresar";
         $scope.Trabajador={};
-      //  $scope.Cargos = ['Administrador','Analista'];
-       // $scope.Estatuss = ['Activo','Inactivo'];
-        $scope.guardarTrabajador = function(){
+        $scope.Trabajador.Cargos=[{id:1, nombre:"admin"}, {id:2, nombre:"analista"}];
+        $scope.Estatus=[{id:1, nombre:"Activo"}, {id:2, nombre:"Inactivo"}];
 
-            if ($scope.trabajdorForm.$valid) {
-                TrabajadorResource.save($scope.Trabajador);
-                Materialize.toast('Trabajador Registrado.',5000,'pink');
-                $timeout(function(){
-                    $location.path('/trabajadores');
-                },1000);
+        // $scope.Cargos = CargosResource.query();
+
+        $scope.guardarTrabajador = function(){
+            var indice = document.trabajadorForm.idcargo.selectedIndex;
+            $scope.Trabajador.idcargo = document.trabajadorForm.idcargo.options[indice].value;
+
+            var ind = document.trabajadorForm.estatus.selectedIndex;
+            $scope.Trabajador.estatus =document.trabajadorForm.estatus.options[ind].text;
+
+            if ($scope.trabajadorForm.$valid) {
+             TrabajadorResource.save($scope.Trabajador)
+                    .$promise.then(
+                    function (data){
+                        Materialize.toast('Trabajador Registrado.',5000,'pink');
+                        $timeout(function(){
+                            $location.path('/trabajadores');
+                        },1000);
+                    },
+                    function(error){
+                        Materialize.toast('Ya existe Un Usuario Con el numero de cedula.',5000,'pink');
+                        $timeout(function(){
+                            $location.path('/trabajadores');
+                        },1000);
+                    }
+                );
+
             }else{
-                if($scope.trabajdorForm.cedula.$error.required){
+                if($scope.trabajadorForm.cedula.$error.required){
                     Materialize.toast('La Cedula es Requerida.',5000,'pink');
                 }
-                if($scope.trabajdorForm.nombre.$error.required){
+                if($scope.trabajadorForm.nombre.$error.required){
                     Materialize.toast('El Nombre es Requerido.',5000,'pink');
                 }
-                if($scope.trabajdorForm.apellido.$error.required){
+                if($scope.trabajadorForm.apellido.$error.required){
                     Materialize.toast('El Apellido es Requerido.',5000,'pink');
                 }
-                if($scope.trabajdorForm.correo.$error.required){
+                if($scope.trabajadorForm.correo.$error.required){
                     Materialize.toast('El Correo es Requerido.',5000,'pink');
                 }
-                if($scope.trabajdorForm.estatus.$error.required){
+                if($scope.trabajadorForm.estatus.$error.required){
                     Materialize.toast('El Estatus es Requerido.',5000,'pink');
                 }
-               /* if($scope.trabajdorForm.cargo.$error.required){
+                if($scope.trabajadorForm.idcargo.$error.required){
                     Materialize.toast('El Cargo es Requerido.',5000,'pink');
-                }*/
+                }
             }
 
         }
@@ -66,12 +86,17 @@ angular.module('Trabajador')
     })
 
     .controller('EditarTrabajadorCtrl', function($scope, TrabajadorResource, $location, $timeout, $stateParams){
+        $(document).ready(function() {
+            $('select').material_select();
+        });
         $scope.titulo="Editar Datos del Trabajador";
         $scope.boton="Actualizar";
         $scope.botonRegresar="Regresar";
         $scope.Trabajador=TrabajadorResource.get({
             id:$stateParams.id
         });
+       /* $scope.Trabajador.Cargos=[{id:1, nombre:"admin"}, {id:2, nombre:"analista"}];
+        $scope.Estatus=[{id:1, nombre:"Activo"}, {id:2, nombre:"Inactivo"}];*/
         $scope.guardarTrabajador = function(){
             TrabajadorResource.update($scope.Trabajador);
             Materialize.toast('Trabajador Actualizado.',5000,'pink');

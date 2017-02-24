@@ -9,13 +9,14 @@
                  method: "PUT"
              }
          });
-     });
-
- //creamos nuestro servicio
-/* angular.module('Trabajador')
-     .service('SerCargos', function(){
-     this.datosCargos = function(){
-         return [{nombre : "Administrador"}
-         ]
-     }
- });*/
+     })
+     .factory('CargosResource', function($resource){
+         return $resource("http://localhost:8000/cargos/:id",{
+             id:"@id"
+         },{
+             update:{
+                 method: "PUT"
+             }
+         });
+     })
+    ;

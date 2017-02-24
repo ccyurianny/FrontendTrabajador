@@ -2,9 +2,9 @@
     <div class="col s12 m12">
         <div class="card-content indigo-text .text-darken-4">
             <h6 class="indigo-text .text-darken-4">{{titulo}}</h6>
-            <form name="trabajdorForm" ng-submit="guardarTrabajador()">
+            <form name="trabajadorForm" ng-submit="guardarTrabajador()">
                 <div class="input-field col s6 m6">
-                    <input class="indigo-text .text-darken-4" name="cedula" placeholder="Cédula" type="text" ng-model="Trabajador.cedula" required>
+                    <input class="indigo-text .text-darken-4" name="cedula" placeholder="Cédula" type="number" ng-model="Trabajador.cedula" required>
                 </div>
                 <div class="input-field col s6 m6">
                     <input class="indigo-text .text-darken-4" name="nombre" placeholder="Nombre" type="text" ng-model="Trabajador.nombre" required>
@@ -15,24 +15,19 @@
                 <div class="input-field col s6 m6">
                     <input class="indigo-text .text-darken-4" name="correo" placeholder="Correo" type="email" ng-model="Trabajador.correo" required>
                 </div>
-                <div class="input-field col s6 m6">
-                    <input class="indigo-text .text-darken-4" name="estatus" placeholder="estatus" type="text" ng-model="Trabajador.estatus" required>
-                </div>
-                <div class="input-field col s6 m6">
-                    <input class="indigo-text .text-darken-4" name="cargo" placeholder="cargo" type="text" ng-model="Trabajador.cargo" required>
-                </div>
-               <!-- <div class="input-field col s6">
-                    <select class="indigo-text .text-darken-4" name="estatus" ng-options="estatus for estatus in Estatuss" ng-model="Trabajador.estatus">
-                        <option value="" disabled selected class="indigo-text .text-darken-4">Seleccione el Estatus</option>
-                    </select>
-                    <label>Estatus</label>
-                </div>
-               <div class="input-field col s6">
-                   <select class="indigo-text .text-darken-4" name="cargo" ng-options="cargo for cargo in Cargos" ng-model="Trabajador.cargo">
-                        <option value="" disabled selected class="indigo-text .text-darken-4">Seleccione el cargo</option>
+                <div class="input-field col s6">
+                    <select ng-model="Trabajador.estatus" name="estatus" ng-options="estatus as estatus.nombre for estatus in Estatus track by estatus.id"" >
+                        <option value="">--Elige opcion--</option>
                     </select>
                     <label>Cargos</label>
-               </div>-->
+                </div>
+                <div class="input-field col s6">
+                    <select ng-model="Trabajador.idcargo" name="idcargo" ng-options="cargo as cargo.nombre for cargo in Trabajador.Cargos track by cargo.id" >
+                        <option value="">--Elige opcion--</option>
+                    </select>
+                    <label>Cargos</label>
+                </div>
+
             </form>
 
         </div>
