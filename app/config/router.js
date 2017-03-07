@@ -1,5 +1,5 @@
 'use strict';
-angular.module('Trabajador', ['ui.router','ngResource'])
+angular.module('Trabajador', ['ui.router','ngResource','ngSanitize'])
 .config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
     $urlRouterProvider.otherwise('/trabajadores');
 
